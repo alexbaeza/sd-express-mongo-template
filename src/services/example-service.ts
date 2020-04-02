@@ -11,7 +11,10 @@ export class ExampleService {
   public getAllExampleItems(req: Request, res: Response) {
     ExampleModel.find({}, (error: Error, exampleItem: MongooseDocument) => {
       if (error) {
-        return res.send(error);
+        return res.status(500).json({
+          status: 'Error',
+          message: error
+        })
       }
       return res.json(exampleItem);
     });
@@ -21,7 +24,10 @@ export class ExampleService {
     const newExampleItem = new ExampleModel(req.body);
     newExampleItem.save((error: Error, exampleItem: MongooseDocument) => {
       if (error) {
-        return res.send(error);
+        return res.status(500).json({
+          status: 'Error',
+          message: error
+        })
       }
       return res.status(201).json(exampleItem);
     });
@@ -32,7 +38,10 @@ export class ExampleService {
     //findOneAndDelete({_id: exampleItemId}).
     ExampleModel.findByIdAndDelete(exampleItemId, (error: Error, deleted: any) => {
       if (error) {
-        res.send(error);
+        return res.status(500).json({
+          status: 'Error',
+          message: error
+        })
       }
 
       return deleted
@@ -49,12 +58,15 @@ export class ExampleService {
       { new: true }, //Return the updated object
       (error: Error, exampleItem: any) => {
         if (error) {
-          res.send(error);
+          return res.status(500).json({
+            status: 'Error',
+            message: error
+          })
         }
 
         return exampleItem
           ? res.status(200).json(exampleItem)
-          : res.status(404).send(RESOURCE_NOT_FOUND_MESSAGE);
+          : res.status(404).json(RESOURCE_NOT_FOUND_MESSAGE);
       }
     );
   }
