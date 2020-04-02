@@ -14,15 +14,15 @@ _Docker is set up with volumes to persist data inside `exampleData`_
 
 _`package.json` only contains one script that starts up the application using env `development`_
 
-###To Run:
+### To Run:
 
-####Build docker
+#### Build docker
 
 `docker-compose up`
 
 _This will build the mongoDB and make it available at `mongodb://localhost:27017/ExampleDB`_
 
-####Start app
+#### Start app
 
 `yarn start`
 
@@ -58,7 +58,7 @@ _This will start the app on port 9001 but can be configure from `/src/constants/
 
 ```
 
-###CRUD example endpoints
+### CRUD example endpoints
 
 | Method        | route           | Description        |
 | ------------- | --------------- | ------------------ |
