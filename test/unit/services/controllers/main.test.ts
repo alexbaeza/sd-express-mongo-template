@@ -37,6 +37,16 @@ describe('main-controller', () => {
     await testDbHelper.stop();
   });
 
+  describe('GET /', () => {
+    it('should return welcome message', async () => {
+
+      const response = await request(server)
+        .get('/')
+        .expect(200);
+
+      expect(response['text']).to.be.eq("Welcome to the Example Service REST");
+    });
+  });
 
   describe('GET /all', () => {
     it('should create a new item', async () => {
@@ -49,6 +59,7 @@ describe('main-controller', () => {
       expect(response.body).to.be.ofSize(10);
     });
   });
+
   describe('POST /item', () => {
     it('should create a new item', async () => {
 
