@@ -6,7 +6,7 @@ import { expect } from '../../../test-utils';
 const testDbHelper: TestDbHelper = new TestDbHelper();
 
 /**
- * Creates 10 users in database and saves them in local array
+ * Creates 10 users in database and returns them as an array
  */
 async function setUpExampleData() {
 
