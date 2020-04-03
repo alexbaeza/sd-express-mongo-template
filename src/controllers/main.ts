@@ -1,6 +1,6 @@
 import { Application } from 'express';
-import { ExampleService } from "../services/example-service";
-import { PATHS } from "../constants/paths";
+import { PATHS } from '../constants/paths';
+import { ExampleService } from '../services/example-service';
 
 export class Controller {
   private exampleService: ExampleService;

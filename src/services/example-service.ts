@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
-import { DELETE_SUCCESSFUL_MESSAGE, RESOURCE_NOT_FOUND_MESSAGE, WELCOME_MESSAGE } from "../constants/messages";
-import { MongooseDocument } from "mongoose";
-import { ExampleItemModel } from "../models/example-item";
+import { Request, Response } from 'express';
+import { MongooseDocument } from 'mongoose';
+import { DELETE_SUCCESSFUL_MESSAGE, RESOURCE_NOT_FOUND_MESSAGE, WELCOME_MESSAGE } from '../constants/messages';
+import { ExampleItemModel } from '../models/example-item';
 
 export class ExampleService {
   public welcomeMessage(req: Request, res: Response) {
@@ -14,7 +14,7 @@ export class ExampleService {
         return res.status(500).json({
           status: 'Error',
           message: error
-        })
+        });
       }
       return res.json(exampleItem);
     });
@@ -22,12 +22,13 @@ export class ExampleService {
 
   public addNewExampleItem(req: Request, res: Response) {
     const newExampleItem = new ExampleItemModel(req.body);
+    // tslint:disable-next-line:no-floating-promises
     newExampleItem.save((error: Error, exampleItem: MongooseDocument) => {
       if (error) {
         return res.status(500).json({
           status: 'Error',
           message: error
-        })
+        });
       }
       return res.status(201).json(exampleItem);
     });
@@ -41,7 +42,7 @@ export class ExampleService {
         return res.status(500).json({
           status: 'Error',
           message: error
-        })
+        });
       }
       return exampleItem
         ? res.status(200).json(exampleItem)
@@ -51,13 +52,13 @@ export class ExampleService {
 
   public deleteExampleItem(req: Request, res: Response) {
     const exampleItemId = req.params.id;
-    //findOneAndDelete({_id: exampleItemId}).
+    // findOneAndDelete({_id: exampleItemId}).
     ExampleItemModel.findByIdAndDelete(exampleItemId, (error: Error, deleted: any) => {
       if (error) {
         return res.status(500).json({
           status: 'Error',
           message: error
-        })
+        });
       }
 
       return deleted
@@ -71,13 +72,13 @@ export class ExampleService {
     ExampleItemModel.findByIdAndUpdate(
       exampleItemId,
       req.body,
-      { new: true }, //Return the updated object
+      { new: true }, // Return the updated object
       (error: Error, exampleItem: any) => {
         if (error) {
           return res.status(500).json({
             status: 'Error',
             message: error
-          })
+          });
         }
 
         return exampleItem

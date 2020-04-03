@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+// tslint:disable:no-console
 export async function connect(mongoUri: string) {
   try {
     await mongoose.connect(
@@ -16,10 +17,10 @@ export async function connect(mongoUri: string) {
   } catch (err) {
     console.log('Error while connecting on MongoDb', err);
   }
-};
+}
 
 export async function disconnect() {
   await mongoose.connection.close();
   console.log(`MongoDb Connection closed successfully`);
 
-};
+}

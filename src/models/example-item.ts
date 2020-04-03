@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 export const ExampleItemSchema = new mongoose.Schema({
   firstName: String,
@@ -6,4 +6,4 @@ export const ExampleItemSchema = new mongoose.Schema({
   type: String
 });
 
-export const ExampleItemModel = mongoose.model("ExampleItemModel", ExampleItemSchema);
+export const ExampleItemModel = mongoose.model('ExampleItemModel', ExampleItemSchema);

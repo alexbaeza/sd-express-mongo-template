@@ -7,7 +7,13 @@
     "start": "cross-env NODE_ENV=development nodemon",
     "test": "yarn test:unit",
     "test:coverage": "nyc report",
-    "test:unit": "cross-env NODE_ENV=test nyc mocha --opts test/unit/mocha.opts --recursive \"test/unit/**/*.test.ts\""
+    "test:unit": "cross-env NODE_ENV=test nyc mocha --opts test/unit/mocha.opts --recursive \"test/unit/**/*.test.ts\"",
+    "lint": "tslint --project ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
   },
   "dependencies": {
     "@types/body-parser": "^1.19.0",
@@ -39,9 +45,13 @@
     "chai-as-promised": "^7.1.1",
     "chai-http": "^4.3.0",
     "chai-string": "^1.5.0",
+    "husky": "^4.2.3",
     "mocha": "^7.1.1",
     "mongodb-memory-server": "^6.5.1",
     "nyc": "^15.0.0",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "tslint": "^6.0.0",
+    "tslint-config-standard": "^9.0.0",
+    "tslint-no-unused-expression-chai": "^0.1.4"
   }
 }

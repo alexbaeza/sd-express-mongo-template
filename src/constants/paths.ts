@@ -4,4 +4,3 @@ export const PATHS = {
   ITEM: '/item',
   ITEM_BY_ID: '/item/:id'
 };
-

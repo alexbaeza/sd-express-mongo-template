@@ -1,7 +1,7 @@
-import TestDbHelper from "../../../test-db-helper";
 import request from 'supertest';
-import { server, stopServer } from "../../../../src/server";
-import { expect } from "../../../test-utils";
+import { server, stopServer } from '../../../../src/server';
+import TestDbHelper from '../../../test-db-helper';
+import { expect } from '../../../test-utils';
 
 const testDbHelper: TestDbHelper = new TestDbHelper();
 
@@ -23,13 +23,12 @@ async function setUpExampleData() {
   }));
 }
 
-
 describe('main-controller', () => {
 
   let exampleData;
   before(async () => {
     await testDbHelper.start();
-    exampleData = await setUpExampleData()
+    exampleData = await setUpExampleData();
   });
 
   after(async () => {
@@ -44,7 +43,7 @@ describe('main-controller', () => {
         .get('/')
         .expect(200);
 
-      expect(response['text']).to.be.eq("Welcome to the Example Service REST");
+      expect(response.text).to.be.eq('Welcome to the Example Service REST');
     });
   });
 
@@ -70,15 +69,14 @@ describe('main-controller', () => {
 
       expect(response.body).to.haveOwnProperty('_id');
       expect(response.body).to.haveOwnProperty('firstName');
-      expect(response.body['firstName']).to.be.eq('Alex');
+      expect(response.body.firstName).to.be.eq('Alex');
       expect(response.body).to.haveOwnProperty('surname');
-      expect(response.body['surname']).to.be.eq('Dev');
+      expect(response.body.surname).to.be.eq('Dev');
       expect(response.body).to.haveOwnProperty('type');
-      expect(response.body['type']).to.be.eq('Developer');
+      expect(response.body.type).to.be.eq('Developer');
       expect(response.body).to.haveOwnProperty('__v');
     });
   });
-
 
   describe('GET /item/{id}', () => {
     it('should retrieve and item by id', async () => {
@@ -102,15 +100,15 @@ describe('main-controller', () => {
         .expect(200);
 
       expect(response.body).to.haveOwnProperty('_id');
-      expect(response.body['_id']).to.be.eq(exampleData[0]._id);
+      expect(response.body._id).to.be.eq(exampleData[0]._id);
       expect(response.body).to.haveOwnProperty('firstName');
-      expect(response.body['firstName']).to.be.eq(exampleData[0].firstName);
+      expect(response.body.firstName).to.be.eq(exampleData[0].firstName);
       expect(response.body).to.haveOwnProperty('surname');
-      expect(response.body['surname']).to.be.eq('newSurname');
+      expect(response.body.surname).to.be.eq('newSurname');
       expect(response.body).to.haveOwnProperty('type');
-      expect(response.body['type']).to.be.eq(exampleData[0].type);
+      expect(response.body.type).to.be.eq(exampleData[0].type);
       expect(response.body).to.haveOwnProperty('__v');
-      expect(response.body['__v']).to.be.deep.eq(exampleData[0].__v);
+      expect(response.body.__v).to.be.deep.eq(exampleData[0].__v);
 
     });
   });

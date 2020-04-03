@@ -1,5 +1,5 @@
-import { MongoMemoryServer } from "mongodb-memory-server"
-import * as dbHelper from "../src/helpers/db-helper";
+import { MongoMemoryServer } from 'mongodb-memory-server';
+import * as dbHelper from '../src/helpers/db-helper';
 
 export default class TestDbHelper {
   private server: MongoMemoryServer;

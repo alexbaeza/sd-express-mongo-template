@@ -1,6 +1,7 @@
-import app from "./app";
-import { PORT } from "./constants/config";
+import app from './app';
+import { PORT } from './constants/config';
 
+// tslint:disable-next-line:no-console
 export const server = app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
 export const stopServer = () => {
@@ -8,11 +9,11 @@ export const stopServer = () => {
 };
 
 // listen for TERM signal .e.g. kill
-process.on('SIGTERM', function () {
+process.on('SIGTERM', () => {
   stopServer();
 });
 
 // listen for INT signal e.g. Ctrl-C
-process.on('SIGINT', function () {
+process.on('SIGINT', () => {
   stopServer();
 });
