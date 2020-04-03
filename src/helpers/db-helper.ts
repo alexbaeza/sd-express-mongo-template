@@ -19,5 +19,7 @@ export async function connect(mongoUri: string) {
 };
 
 export async function disconnect() {
-  await mongoose.connection.close()
+  await mongoose.connection.close();
+  console.log(`MongoDb Connection closed successfully`);
+
 };

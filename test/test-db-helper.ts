@@ -17,8 +17,8 @@ export default class TestDbHelper {
   /**
    * Close the connection and destroy
    */
-  stop() {
-    dbHelper.disconnect();
+  async stop() {
+    await dbHelper.disconnect();
   }
 
 }
