@@ -21,6 +21,7 @@ export class Controller {
       .post(this.exampleService.addNewExampleItem);
 
     this.app.route(PATHS.ITEM_BY_ID)
+      .get(this.exampleService.getExampleItem)
       .delete(this.exampleService.deleteExampleItem)
       .put(this.exampleService.updateExampleItem);
 

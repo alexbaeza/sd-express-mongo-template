@@ -13,3 +13,6 @@ _output
 
 #docker volume
 exampleData
+
+#docker volume
+dist

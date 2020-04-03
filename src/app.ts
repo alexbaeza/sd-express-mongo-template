@@ -2,8 +2,10 @@ import express, { Application } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { Controller } from "./controllers/main";
-import mongoose from "mongoose";
 import { MONGODB_CONNECTION_STRING } from "./constants/config";
+import * as dbHelper from './helpers/db-helper'
+
+const environment: string = process.env.NODE_ENV;
 
 class App {
   public app: Application;
@@ -18,10 +20,9 @@ class App {
 
   //Connecting to our MongoDB database
   private setMongoConfig() {
-    mongoose.Promise = global.Promise;
-    mongoose.connect(MONGODB_CONNECTION_STRING, {
-      useNewUrlParser: true
-    });
+    if (environment != 'test') {
+      dbHelper.connect(MONGODB_CONNECTION_STRING);
+    }
   }
 
   private setConfig() {

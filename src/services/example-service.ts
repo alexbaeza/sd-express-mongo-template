@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { DELETE_SUCCESSFUL_MESSAGE, RESOURCE_NOT_FOUND_MESSAGE, WELCOME_MESSAGE } from "../constants/messages";
 import { MongooseDocument } from "mongoose";
-import { ExampleModel } from "../models/example";
+import { ExampleItemModel } from "../models/example-item";
 
 export class ExampleService {
   public welcomeMessage(req: Request, res: Response) {
@@ -9,7 +9,7 @@ export class ExampleService {
   }
 
   public getAllExampleItems(req: Request, res: Response) {
-    ExampleModel.find({}, (error: Error, exampleItem: MongooseDocument) => {
+    ExampleItemModel.find({}, (error: Error, exampleItem: MongooseDocument) => {
       if (error) {
         return res.status(500).json({
           status: 'Error',
@@ -21,7 +21,7 @@ export class ExampleService {
   }
 
   public addNewExampleItem(req: Request, res: Response) {
-    const newExampleItem = new ExampleModel(req.body);
+    const newExampleItem = new ExampleItemModel(req.body);
     newExampleItem.save((error: Error, exampleItem: MongooseDocument) => {
       if (error) {
         return res.status(500).json({
@@ -33,10 +33,26 @@ export class ExampleService {
     });
   }
 
+  public getExampleItem(req: Request, res: Response) {
+    const exampleItemId = req.params.id;
+
+    ExampleItemModel.findById(exampleItemId, (error: Error, exampleItem: MongooseDocument) => {
+      if (error) {
+        return res.status(500).json({
+          status: 'Error',
+          message: error
+        })
+      }
+      return exampleItem
+        ? res.status(200).json(exampleItem)
+        : res.status(404).json(RESOURCE_NOT_FOUND_MESSAGE);
+    });
+  }
+
   public deleteExampleItem(req: Request, res: Response) {
     const exampleItemId = req.params.id;
     //findOneAndDelete({_id: exampleItemId}).
-    ExampleModel.findByIdAndDelete(exampleItemId, (error: Error, deleted: any) => {
+    ExampleItemModel.findByIdAndDelete(exampleItemId, (error: Error, deleted: any) => {
       if (error) {
         return res.status(500).json({
           status: 'Error',
@@ -52,7 +68,7 @@ export class ExampleService {
 
   public updateExampleItem(req: Request, res: Response) {
     const exampleItemId = req.params.id;
-    ExampleModel.findByIdAndUpdate(
+    ExampleItemModel.findByIdAndUpdate(
       exampleItemId,
       req.body,
       { new: true }, //Return the updated object
