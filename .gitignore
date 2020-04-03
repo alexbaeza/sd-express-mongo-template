@@ -12,7 +12,6 @@ output
 _output
 
 #docker volume
-exampleData
+data
 
-#docker volume
 dist

@@ -6,7 +6,7 @@ services:
     image: mongo:latest
     restart: always
     volumes:
-      - ./exampleData:/data/db
+      - ./data:/data/db
     environment:
       - MONGO_INITDB_DATABASE=ExampleDB
     ports:
