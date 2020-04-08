@@ -2,6 +2,10 @@
   "watch": [
     "src"
   ],
+  "restartable": "rs",
   "ext": "ts",
-  "exec": "ts-node ./src/server.ts"
+  "exec": "ts-node --files ./src/server.ts",
+  "env": {
+    "NODE_ENV": "development"
+  }
 }
